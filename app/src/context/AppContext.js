@@ -25,26 +25,32 @@ export const AppContextProvider = ({ children }) => {
     // formula; D distance, X distance horizontal, Y distance vertical, 2 = squared
     // D2 = X2 + Y2
     // find distance, coord1 - coord2
-    console.log(building);
 
+    // SET CLOSETS TOWER OBJECT VARIABLE
     let closest;
 
     for (let i = 0; i < towerData.length; i++) {
-      console.log({ buildingX: building.xCoord, buildingY: building.yCoord });
-      console.log({ towerX: towerData[i].xCoord, towerY: towerData[i].yCoord });
-      const distanceX = building.xCoord - towerData[i].xCoord;
-      const distanceY = building.yCoord - towerData[i].yCoord;
+      // CALCULTE DISTANCE X AND Y
+      const distanceX = Math.abs(building.xCoord - towerData[i].xCoord);
+      const distanceY = Math.abs(building.yCoord - towerData[i].yCoord);
 
+      // ADD SQUARES OF DISTANCE X AND Y TO FIND DISTANCE(SQUARED)
       const distanceSquared = Math.pow(distanceX, 2) + Math.pow(distanceY, 2);
+
+      // FIND SQUARE ROOT OF D(SQUARED) TO FIND DISTANCE VALUE
       const distance = Math.sqrt(distanceSquared);
 
+      // SET FIRST RESULT WITH IT'S DISTANCE TO CLOSEST VARIABLE AND CONTINUE TO NEXT ITERATION
       if (!closest) {
         closest = { ...towerData[i], distance };
         continue;
       }
-      if (closest.distance < distance) closest = { ...towerData[i], distance };
+
+      // IF THIS NEW DISTANCE IS LESS, SET IT TO CLOSEST
+      if (closest.distance > distance) closest = { ...towerData[i], distance };
     }
 
+    // SET CLOSEST TOWER TO CLOSEST RESULT STATE
     return setResult(closest);
   };
 
