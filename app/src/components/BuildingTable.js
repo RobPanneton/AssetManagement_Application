@@ -120,10 +120,19 @@ const BuildingTableWrapper = styled.div`
 
   th {
     padding: 11px 17px;
+    position: relative;
   }
 
   #find-button {
     padding: 3px 5px;
+    cursor: pointer;
+  }
+
+  .sort-button {
+    border: none;
+    position: absolute;
+    top: 7px;
+    margin-right: 4px;
     cursor: pointer;
   }
 `;
