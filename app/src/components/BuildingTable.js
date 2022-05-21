@@ -59,10 +59,11 @@ const TableDisplay = styled.table`
   td {
     border: 1px solid black;
     padding: 3px 7px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
   }
   button {
-    margin: 0;
-    padding: 0;
     cursor: pointer;
   }
 `;

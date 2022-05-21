@@ -28,6 +28,6 @@ const ResultWrapper = styled.div`
   }
 
   h1 {
-    margin-bottom: 13px;
+    margin-bottom: 23px;
   }
 `;
