@@ -1,4 +1,4 @@
-export const buildlingData = [
+export const buildingDataSet = [
   {
     id: "B1",
     type: "building",
