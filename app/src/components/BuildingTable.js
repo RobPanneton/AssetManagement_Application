@@ -6,6 +6,7 @@ import styled from "styled-components";
 export const BuildingTable = () => {
   const { buildingData, findClosestTower } = useContext(AppContext);
 
+  // placeholder
   return (
     <BuildingTableWrapper>
       <TableDisplay>
