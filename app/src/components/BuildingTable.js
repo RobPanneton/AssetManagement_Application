@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 import styled from "styled-components";
 
 export const BuildingTable = () => {
-  const { buildingData } = useContext(AppContext);
+  const { buildingData, findClosestTower } = useContext(AppContext);
 
   return (
     <BuildingTableWrapper>
@@ -19,21 +19,25 @@ export const BuildingTable = () => {
           </tr>
         </thead>
         <tbody>
-          {buildingData.map((building) => {
-            return (
-              <>
-                <tr key={building}>
-                  <td>{building.name}</td>
-                  <td>{building.id}</td>
-                  <td>{building.xCord}</td>
-                  <td>{building.yCord}</td>
-                  <td>
-                    <button>Find</button>
-                  </td>
-                </tr>
-              </>
-            );
-          })}
+          {buildingData && (
+            <>
+              {buildingData.map((building) => {
+                return (
+                  <tr key={building.id}>
+                    <td>{building.name}</td>
+                    <td>{building.id}</td>
+                    <td>{building.xCoord}</td>
+                    <td>{building.yCoord}</td>
+                    <td>
+                      <button onClick={() => findClosestTower(building)}>
+                        Find
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </>
+          )}
         </tbody>
       </TableDisplay>
     </BuildingTableWrapper>
