@@ -82,7 +82,10 @@ export const AppContextProvider = ({ children }) => {
     setSortSettings({
       section: section,
       direction:
-        sortSettings.direction === "ascending" ? "descending" : "ascending",
+        sortSettings.direction === "ascending" &&
+        sortSettings.section === section
+          ? "descending"
+          : "ascending",
     });
 
     // SET NEWLY SORTED BUILDING LIST TO STATE
@@ -95,6 +98,7 @@ export const AppContextProvider = ({ children }) => {
         buildingData,
         towerData,
         result,
+        sortSettings,
         findClosestTower,
         sortTableData,
       }}

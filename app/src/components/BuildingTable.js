@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 import styled from "styled-components";
 
 export const BuildingTable = () => {
-  const { buildingData, findClosestTower, sortTableData } =
+  const { buildingData, findClosestTower, sortTableData, sortSettings } =
     useContext(AppContext);
 
   // placeholder
@@ -21,7 +21,10 @@ export const BuildingTable = () => {
                   sortTableData("name", "string");
                 }}
               >
-                ▲
+                {sortSettings.direction === "ascending" &&
+                sortSettings.section === "name"
+                  ? "▼"
+                  : "▲"}
               </button>
             </th>
             <th>
@@ -32,7 +35,10 @@ export const BuildingTable = () => {
                   sortTableData("id", "string");
                 }}
               >
-                ▲
+                {sortSettings.direction === "ascending" &&
+                sortSettings.section === "id"
+                  ? "▼"
+                  : "▲"}
               </button>
             </th>
             <th>
@@ -43,7 +49,10 @@ export const BuildingTable = () => {
                   sortTableData("xCoord", "number");
                 }}
               >
-                ▲
+                {sortSettings.direction === "ascending" &&
+                sortSettings.section === "xCoord"
+                  ? "▼"
+                  : "▲"}
               </button>
             </th>
             <th>
@@ -54,7 +63,10 @@ export const BuildingTable = () => {
                   sortTableData("yCoord");
                 }}
               >
-                ▲
+                {sortSettings.direction === "ascending" &&
+                sortSettings.section === "yCoord"
+                  ? "▼"
+                  : "▲"}
               </button>
             </th>
             <th>Action</th>
@@ -75,7 +87,7 @@ export const BuildingTable = () => {
                         id='find-button'
                         onClick={() => findClosestTower(building)}
                       >
-                        Find ▲ ▼
+                        Find
                       </button>
                     </td>
                   </tr>
