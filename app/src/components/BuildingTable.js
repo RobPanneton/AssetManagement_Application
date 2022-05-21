@@ -4,18 +4,59 @@ import { AppContext } from "../context/AppContext";
 import styled from "styled-components";
 
 export const BuildingTable = () => {
-  const { buildingData, findClosestTower } = useContext(AppContext);
+  const { buildingData, findClosestTower, sortTableData } =
+    useContext(AppContext);
 
   // placeholder
   return (
     <BuildingTableWrapper>
-      <TableDisplay>
+      <table>
         <thead>
           <tr>
-            <th>Building</th>
-            <th>ID</th>
-            <th>X Coord</th>
-            <th>Y Coord</th>
+            <th>
+              Building
+              <button
+                className='sort-button'
+                onClick={() => {
+                  sortTableData("name", "string");
+                }}
+              >
+                ▲
+              </button>
+            </th>
+            <th>
+              ID
+              <button
+                className='sort-button'
+                onClick={() => {
+                  sortTableData("id", "string");
+                }}
+              >
+                ▲
+              </button>
+            </th>
+            <th>
+              X Coord
+              <button
+                className='sort-button'
+                onClick={() => {
+                  sortTableData("xCoord", "number");
+                }}
+              >
+                ▲
+              </button>
+            </th>
+            <th>
+              Y Coord
+              <button
+                className='sort-button'
+                onClick={() => {
+                  sortTableData("yCoord");
+                }}
+              >
+                ▲
+              </button>
+            </th>
             <th>Action</th>
           </tr>
         </thead>
@@ -30,8 +71,11 @@ export const BuildingTable = () => {
                     <td>{building.xCoord}</td>
                     <td>{building.yCoord}</td>
                     <td>
-                      <button onClick={() => findClosestTower(building)}>
-                        Find
+                      <button
+                        id='find-button'
+                        onClick={() => findClosestTower(building)}
+                      >
+                        Find ▲ ▼
                       </button>
                     </td>
                   </tr>
@@ -40,7 +84,7 @@ export const BuildingTable = () => {
             </>
           )}
         </tbody>
-      </TableDisplay>
+      </table>
     </BuildingTableWrapper>
   );
 };
@@ -52,18 +96,22 @@ const BuildingTableWrapper = styled.div`
   justify-content: center;
 
   margin: 40px 0;
-`;
 
-const TableDisplay = styled.table`
   th,
   td {
     border: 1px solid black;
-    padding: 3px 7px;
+    padding: 7px 11px;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
   }
-  button {
+
+  th {
+    padding: 11px 17px;
+  }
+
+  #find-button {
+    padding: 3px 5px;
     cursor: pointer;
   }
 `;
