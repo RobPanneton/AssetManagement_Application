@@ -3,9 +3,10 @@ import { AppContext } from "../context/AppContext";
 
 import styled from "styled-components";
 
+import { BuildingTableRow } from "./BuildingTableRow";
+
 export const BuildingTable = () => {
-  const { buildingData, findClosestTower, sortTableData, sortSettings } =
-    useContext(AppContext);
+  const { buildingData, sortTableData, sortSettings } = useContext(AppContext);
 
   // placeholder
   return (
@@ -77,20 +78,7 @@ export const BuildingTable = () => {
             <>
               {buildingData.map((building) => {
                 return (
-                  <tr key={building.id}>
-                    <td>{building.name}</td>
-                    <td>{building.id}</td>
-                    <td>{building.xCoord}</td>
-                    <td>{building.yCoord}</td>
-                    <td>
-                      <button
-                        id='find-button'
-                        onClick={() => findClosestTower(building)}
-                      >
-                        Find
-                      </button>
-                    </td>
-                  </tr>
+                  <BuildingTableRow building={building} key={building.id} />
                 );
               })}
             </>
@@ -121,11 +109,7 @@ const BuildingTableWrapper = styled.div`
   th {
     padding: 11px 17px;
     position: relative;
-  }
-
-  #find-button {
-    padding: 3px 5px;
-    cursor: pointer;
+    font-weight: 600;
   }
 
   .sort-button {
