@@ -11,19 +11,16 @@ export const AppContextProvider = ({ children }) => {
   const [towerData, setTowerData] = useState(null);
   const [result, setResult] = useState(null);
 
+  // FETCH BUILDING AND TOWER DATA FROM THE "API"
   useEffect(() => {
     // fetch data and set it to state
     setBuildingData(buildingDataSet);
     setTowerData(towerDataSet);
   }, []);
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
-
+  // FUNCTION TO FIND CLOSEST TOWER TO SELECTED BUILDING
   const findClosestTower = (building) => {
-    // formula; D distance, X distance horizontal, Y distance vertical, 2 = squared
-    // D2 = X2 + Y2
+    // Distance(squared) = xDistance(squared) + yDistance(squared)
     // find distance, coord1 - coord2
 
     // SET CLOSETS TOWER OBJECT VARIABLE
@@ -59,6 +56,7 @@ export const AppContextProvider = ({ children }) => {
       value={{
         buildingData,
         towerData,
+        result,
         findClosestTower,
       }}
     >
