@@ -16,10 +16,6 @@ export const AppContextProvider = ({ children }) => {
     setTowerData(towerDataSet);
   }, []);
 
-  useEffect(() => {
-    console.log("test");
-  }, []);
-
   return (
     <AppContext.Provider
       value={{
