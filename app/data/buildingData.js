@@ -1,0 +1,51 @@
+export const buildlingData = [
+  {
+    id: "B1",
+    type: "building",
+    name: "General hospital",
+    xCord: 1300,
+    yCord: 560,
+  },
+  {
+    id: "B2",
+    type: "building",
+    name: "Firehall",
+    xCord: -350,
+    yCord: 1100,
+  },
+  {
+    id: "B3",
+    type: "building",
+    name: "University",
+    xCord: -890,
+    yCord: -1300,
+  },
+  {
+    id: "B4",
+    type: "building",
+    name: "Central library",
+    xCord: 470,
+    yCord: 1010,
+  },
+  {
+    id: "B5",
+    type: "building",
+    name: "Secondary school",
+    xCord: 1550,
+    yCord: 850,
+  },
+  {
+    id: "B6",
+    type: "building",
+    name: "Primary school",
+    xCord: 1450,
+    yCord: 950,
+  },
+  {
+    id: "B7",
+    type: "building",
+    name: "City Hall",
+    xCord: -600,
+    yCord: 200,
+  },
+];
