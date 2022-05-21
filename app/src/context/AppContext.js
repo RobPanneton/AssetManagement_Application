@@ -10,7 +10,11 @@ export const AppContextProvider = ({ children }) => {
   const [buildingData, setBuildingData] = useState(null);
   const [towerData, setTowerData] = useState(null);
   const [result, setResult] = useState(null);
-
+  const [sortSettings, setSortSettings] = useState({
+    section: null,
+    direction: null,
+  });
+  /////////////////////////////////////////////////////////////////
   // FETCH BUILDING AND TOWER DATA FROM THE "API"
   useEffect(() => {
     // fetch data and set it to state
@@ -18,6 +22,7 @@ export const AppContextProvider = ({ children }) => {
     setTowerData(towerDataSet);
   }, []);
 
+  /////////////////////////////////////////////////////////////////
   // FUNCTION TO FIND CLOSEST TOWER TO SELECTED BUILDING
   const findClosestTower = (building) => {
     // Distance(squared) = xDistance(squared) + yDistance(squared)
@@ -51,13 +56,51 @@ export const AppContextProvider = ({ children }) => {
     return setResult(closest);
   };
 
+  /////////////////////////////////////////////////////////////////
+  // FUNCTION TO SORT TABLE DATA
+  const sortTableData = (section) => {
+    let sortedList;
+
+    // SORT BUILDING DATA AND SET TO TEMP LIST VAR
+    sortedList = buildingData.sort((a, b) => {
+      if (a[section] < b[section]) {
+        return sortSettings.direction === "ascending" &&
+          sortSettings.section === section
+          ? 1
+          : -1;
+      }
+      if (a[section] > b[section]) {
+        return sortSettings.direction === "ascending" &&
+          sortSettings.section === section
+          ? -1
+          : 1;
+      }
+      return 0;
+    });
+
+    // SET STATE TO REFLECT NEW SORT SETTINGS
+    setSortSettings({
+      section: section,
+      direction:
+        sortSettings.direction === "ascending" &&
+        sortSettings.section === section
+          ? "descending"
+          : "ascending",
+    });
+
+    // SET NEWLY SORTED BUILDING LIST TO STATE
+    return setBuildingData(sortedList);
+  };
+
   return (
     <AppContext.Provider
       value={{
         buildingData,
         towerData,
         result,
+        sortSettings,
         findClosestTower,
+        sortTableData,
       }}
     >
       {children}
