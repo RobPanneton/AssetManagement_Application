@@ -114,6 +114,7 @@ const BuildingTableWrapper = styled.div`
 
   .sort-button {
     border: none;
+    background-color: transparent;
     position: absolute;
     top: 7px;
     margin-right: 4px;
